@@ -1,0 +1,40 @@
+<div class="container mt-5">
+  <div class="row">
+    <!-- Image principale -->
+    <div class="col-md-6">
+      <%= image_tag(@flat.picture_url || "https://source.unsplash.com/600x400/?apartment",
+                    class: "img-fluid rounded shadow-sm") %>
+    </div>
+
+    <!-- Infos du flat -->
+    <div class="col-md-6">
+      <h1 class="mb-3"><%= @flat.name %></h1>
+      <p class="text-muted">
+        <i class="fas fa-map-marker-alt"></i>
+        <%= @flat.address %>
+      </p>
+
+      <p class="lead"><%= @flat.description %></p>
+
+      <ul class="list-group list-group-flush my-3">
+        <li class="list-group-item">
+          <i class="fas fa-users"></i>
+          <strong>Guests:</strong> <%= @flat.number_of_guests %>
+        </li>
+        <li class="list-group-item">
+          <i class="fas fa-euro-sign"></i>
+          <strong>Price per night:</strong> <%= @flat.price_per_night %> €
+        </li>
+      </ul>
+
+      <div class="mt-4 d-flex gap-2">
+        <%= link_to "Back to all flats", flats_path, class: "btn btn-secondary" %>
+        <%= link_to "Edit this flat", edit_flat_path(@flat), class: "btn btn-warning" %>
+        <%= link_to "Delete",
+                    flat_path(@flat),
+                    data: { turbo_method: :delete, turbo_confirm: "Are you sure?" },
+                    class: "btn btn-danger" %>
+      </div>
+    </div>
+  </div>
+</div>
